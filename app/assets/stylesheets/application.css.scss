@@ -19,7 +19,12 @@
 
 #new_user {
   text-align: center;
+  .form-style {
+    margin: 0 auto;
+  }
   .field {
-    text-align: right;
+  }
+  .sign-up-background {
+    background-image: image-url("hoge.png");
   }
 }
