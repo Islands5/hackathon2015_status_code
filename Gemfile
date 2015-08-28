@@ -25,8 +25,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'mongoid', github: 'mongoid/mongoid'
 gem 'bson_ext'
 gem "mongoid-paperclip", :require => "mongoid_paperclip"
-gem 'slim-rails'
-gem 'html2slim'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
