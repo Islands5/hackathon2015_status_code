@@ -16,3 +16,15 @@
 
 @import "bootstrap-sprockets";
 @import "bootstrap";
+
+#new_user {
+  text-align: center;
+  .form-style {
+    margin: 0 auto;
+  }
+  .field {
+  }
+  .sign-up-background {
+    background-image: image-url("hoge.png");
+  }
+}
