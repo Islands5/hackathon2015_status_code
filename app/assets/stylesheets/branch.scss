@@ -1,7 +1,6 @@
-// Place all the styles related to the Home controller here.
+// Place all the styles related to the Branch controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: http://sass-lang.com/
-
 /*
  * Globals
  */
@@ -32,6 +31,8 @@ html,
 body {
   height: 100%;
   background-color: #333;
+}
+body {
   color: #fff;
   text-align: center;
   text-shadow: 0 1px 3px rgba(0,0,0,.5);
@@ -46,13 +47,14 @@ body {
   -webkit-box-shadow: inset 0 0 100px rgba(0,0,0,.5);
           box-shadow: inset 0 0 100px rgba(0,0,0,.5);
 }
-.site-wrapper-inner#home {
+.site-wrapper-inner#branch {
   display: table-cell;
   vertical-align: top;
-  background-image: url("mother2.jpg");
-	background-repeat: no-repeat;
-	background-size: cover;
-	margin: 0 auto;
+  background-image: url("couple.jpg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  margin: 0 auto;
+
 }
 .cover-container {
   margin-right: auto;
@@ -166,8 +168,4 @@ body {
   .cover-container {
     width: 700px;
   }
-}
-
-p.lead{
-	color: #fff !important;
 }
