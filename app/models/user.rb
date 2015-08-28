@@ -1,5 +1,6 @@
 class User
   include Mongoid::Document
+  include Mongoid::Paperclip
   # Include default devise modules. Others available are:
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -30,6 +31,18 @@ class User
   field :wife_name, type: String, default: '匿名'
   field :wife_email, type: String
   field :wedding_day, type: Date
+
+  has_mongoid_attached_file :wife_image,
+    :styles => { :medium => '100x100#', :thumb => ['24x24#', :jpg] },
+    :path => "app/assets/images/uploaded/:attachment/:id/:style/:filename",
+    :url => "uploaded/:attachment/:id/:style/:filename"
+  validates_attachment_content_type :wife_image, :content_type => %w(image/jpeg image/jpg image/png image/gif)
+
+  has_mongoid_attached_file :family_image,
+    :styles => { :medium => '100x100#', :thumb => ['24x24#', :jpg] },
+    :path => "app/assets/images/uploaded/:attachment/:id/:style/:filename",
+    :url => "uploaded/:attachment/:id/:style/:filename"
+  validates_attachment_content_type :family_image, :content_type => %w(image/jpeg image/jpg image/png image/gif)
   ## Confirmable
   # field :confirmation_token,   type: String
   # field :confirmed_at,         type: Time
