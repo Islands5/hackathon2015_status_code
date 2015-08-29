@@ -9,7 +9,7 @@ class ApplicationController < ActionController::Base
   #   devise_parameter_sanitizer.for(:sign_up) { |u| u.permit(:name, :email, :password, :password_confirmation, :single, :wife_name, :wife_email, :wedding_day, {:wife_image => [:wife_image_file_name, :wife_image_content_type, :wife_image_file_size, :wife_image_updated_at, :wife_image_fingerprint]}, {:family_image =>[ :wife_image_file_name, :wife_image_content_type, :wife_image_file_size, :wife_image_updated_at, :wife_image_fingerprint]}) }
   # end
   def after_sign_in_path_for(resource)
-    check_path
+    branch_path
   end
 
   def after_sign_out_path_for(resource)
