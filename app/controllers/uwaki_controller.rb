@@ -5,15 +5,20 @@ class UwakiController < ApplicationController
     if params[:question] = "true"
       # 奥さんとホテルなう...render
     end
-    lat = params[:geo][:lat].to_f
-    lon = params[:geo][:lon].to_f
+    @lat = params[:geo][:lat].to_f
+    @lon = params[:geo][:lon].to_f
+
+    t1 = Time.now.strftime('%Y')
+    t2 = current_user.wedding_day.strftime('%Y')
+    @delta_t = t2.to_i - t1.to_i
 
 
     #@address = search_address(lat, lon)
     Lovehotel.all.each do |hotel|
-      d = calc_distance(lat, lon, hotel.location[0], hotel.location[1])
+      d = calc_distance(@lat, @lon, hotel.location[0], hotel.location[1])
       if d < distance_m
         @hotel = hotel
+        # ある距離ないにいるときにviewを表示
         break
       end
     end

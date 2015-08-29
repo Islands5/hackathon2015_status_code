@@ -46,8 +46,9 @@
           <img class="first-slide" src="<%= asset_path "weding.jpg" %>" alt="First slide">
           <div class="container">
             <div class="carousel-caption">
-							<h1><code>20○○年 ○月○日</code></h1>
-							<p><code>○○さんは、妻、○○さんと結婚式をあげました。両家の家族、友人、今までにお二人が関わられた大変多くの方々に祝福された結婚式。<br>それはそれは幸せな結婚式でした。</code></p>
+
+              <h1><code><%= current_user.wedding_day.strftime('%Y年%m月%d日') %></code></h1>
+              <p><code><%= current_user.name %>さんは、妻、<%= current_user.wife_name %>さんと結婚式をあげました。両家の家族、友人、今までにお二人が関わられた大変多くの方々に祝福された結婚式。<br>それはそれは幸せな結婚式でした。</code></p>
             </div>
           </div>
         </div>
@@ -66,7 +67,7 @@
 
       <div class="row featurette">
         <div class="col-md-7">
-					<h2 class="featurette-heading">あれから○年。<br><span class="text-muted">あなたを信じ、あなたの<br>帰りを待つ妻がいます。</span></h2>
+          <h2 class="featurette-heading">あれから<%= @delta_t.to_s.strftime('%Y') %>年。<br><span class="text-muted">あなたを信じ、あなたの<br>帰りを待つ妻がいます。</span></h2>
 					<p class="lead">遅くまで仕事を頑張ってるのかな?<br>最近、寒いけど体調大丈夫かな?<br>奥さんはあなたを一番に考えます。</p>
         </div>
         <div class="col-md-5">
@@ -129,4 +130,3 @@
     <script src="../../assets/js/ie10-viewport-bug-workaround.js"></script>
   </body>
 </html>
-
