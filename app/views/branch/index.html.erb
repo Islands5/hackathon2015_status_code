@@ -1,26 +1,23 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
-    <meta name="description" content="">
-    <meta name="author" content="">
-    <link rel="icon" href="../../favicon.ico">
-
-    <title>Cover Template for Bootstrap</title>
-  </head>
-
-  <body>
-
     <div class="site-wrapper">
 
       <div class="site-wrapper-inner" id="branch">
 
         <div class="cover-container">
           <div class="inner cover">
-						<h1 class="cover-heading">一緒に居る女性は<br>奥さんですか?</h1>
+            <h1 class="cover-heading">一緒に居る女性は<br>奥さんですか?</h1>
+  <%= form_tag(uwaki_path, :method => 'POST') do  %>
+    <%= hidden_field_tag 'geo[lat]', 'a', :id => 'lat' %>
+    <%= hidden_field_tag 'geo[lon]', 'b', :id => 'lon' %>
+    
+    <div class="btn-group">
+    <label class="btn btn-default">
+      <%= radio_button_tag 'question', 'true'%>はい
+    </label>
+    <label class="btn btn-default">
+    <%= radio_button_tag 'question', 'false' %>いいえ
+    </label>
+  </div>
+  <% end %>
 						<!--
             <p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p>
 						-->
@@ -37,12 +34,38 @@
       </div>
 
     </div>
+<script type="text/javascript">
+$(function(){
+if (navigator.geolocation) {
+  //Geolocation APIを利用できる環境向けの処理
+  navigator.geolocation.getCurrentPosition( successCallback, errorCallback, {enableHighAccuracy:true, timeout:6000, maximumAge:600000}
+  );
 
-    <!-- Bootstrap core JavaScript
-    ================================================== -->
-    <!-- Placed at the end of the document so the pages load faster -->
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
-    <script src="../../dist/js/bootstrap.min.js"></script>
-  </body>
-</html>
+  function successCallback(position) {
+    var lat = position.coords.latitude;
+    var lon = position.coords.longitude;
+    $('#lat').val(lat);
+    $('#lon').val(lon);
+  }
+function errorCallback(error) {
+  var err_msg = "";
+  switch(error.code)
+  {
+    case 1:
+      err_msg = "位置情報の利用が許可されていません";
+      break;
+    case 2:
+      err_msg = "デバイスの位置が判定できません";
+      break;
+    case 3:
+      err_msg = "タイムアウトしました";
+      break;
+  }
+}
 
+} else {
+  //Geolocation APIを利用できない環境向けの処理
+  alert('位置情報を取得できませんでした');
+}
+});
+</script>

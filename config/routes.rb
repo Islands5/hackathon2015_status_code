@@ -1,6 +1,6 @@
 Rails.application.routes.draw do
   
-	get 'check', to: 'branch#check'
+	get 'branch', to: 'branch#index'
 	get 'uwaki', to: 'uwaki#index'
 	root 'home#index'
   devise_for :users
