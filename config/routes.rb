@@ -3,6 +3,7 @@ Rails.application.routes.draw do
 	get 'branch', to: 'branch#index'
 	get 'uwaki', to: 'uwaki#index'
 	root 'home#index'
+  get '/users/:id/comments', :to => 'users#comments'
   devise_for :users
   # The priority is based upon order of creation: first created -> highest priority.
   # See how all your routes lay out with "rake routes".
