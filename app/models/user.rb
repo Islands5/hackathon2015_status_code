@@ -32,6 +32,8 @@ class User
   field :wife_email, type: String
   field :wedding_day, type: Date
 
+  embeds_many :comments
+
   has_mongoid_attached_file :wife_image,
     :styles => { :medium => '100x100#', :thumb => ['24x24#', :jpg] },
     :path => "app/assets/images/uploaded/:attachment/:id/:style/:filename",
