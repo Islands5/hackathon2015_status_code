@@ -5,27 +5,14 @@
         <div class="cover-container">
           <div class="inner cover">
             <h1 class="cover-heading">一緒に居る女性は<br>奥さんですか?</h1>
-  <%= form_tag(uwaki_path, :method => 'POST') do  %>
-    <%= hidden_field_tag 'geo[lat]', 'a', :id => 'lat' %>
-    <%= hidden_field_tag 'geo[lon]', 'b', :id => 'lon' %>
-    
-    <div class="btn-group">
-    <label class="btn btn-default">
-      <%= radio_button_tag 'question', 'true'%>はい
-    </label>
-    <label class="btn btn-default">
-    <%= radio_button_tag 'question', 'false' %>いいえ
-    </label>
-  </div>
-  <% end %>
 						<!--
             <p class="lead">Cover is a one-page template for building simple and beautiful home pages. Download, edit the text, and add your own fullscreen background photo to make it your own.</p>
 						-->
 						<p class="lead"><br><br><br><br><br><br><br><br><br><br></p>
             <p class="lead">
-						<a href="#" class="btn btn-lg btn-default">&nbsp;はい&nbsp;</a>
-						<a>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</a>
-							<a href="#" class="btn btn-lg btn-default">いいえ</a>
+              <%= link_to "はい", uwaki_path(:question => 'true'), {:class => 'btn btn-lg btn-default'} %>
+&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+<%= link_to "いいえ", uwaki_path(:question => 'false'), {:class => 'btn btn-lg btn-default'} %>
             </p>
           </div>
 
@@ -44,8 +31,8 @@ if (navigator.geolocation) {
   function successCallback(position) {
     var lat = position.coords.latitude;
     var lon = position.coords.longitude;
-    $('#lat').val(lat);
-    $('#lon').val(lon);
+    $('a')[0].href += "&geo[lat]=" + lat + "&geo[lon]=" + lon;
+    $('a')[1].href += "&geo[lat]=" + lat + "&geo[lon]=" + lon;
   }
 function errorCallback(error) {
   var err_msg = "";
