@@ -1,0 +1,50 @@
+<div class="col-md-4 col-md-offset-4" style="margin-top: 250px;">
+  <%= form_tag(uwaki_path, :method => 'POST') do  %>
+    <%= hidden_field_tag 'geo[lat]', 'a', :id => 'lat' %>
+    <%= hidden_field_tag 'geo[lon]', 'b', :id => 'lon' %>
+    
+    一緒にいる女性は奥様ですか?<br>
+    <div class="btn-group">
+    <label class="btn btn-default">
+      <%= radio_button_tag 'question', 'true'%>はい
+    </label>
+    <label class="btn btn-default">
+    <%= radio_button_tag 'question', 'false' %>いいえ
+    </label>
+  </div>
+  <% end %>
+</div>
+
+<script type="text/javascript">
+$(function(){
+if (navigator.geolocation) {
+  //Geolocation APIを利用できる環境向けの処理
+  navigator.geolocation.getCurrentPosition( successCallback, errorCallback, {enableHighAccuracy:true, timeout:6000, maximumAge:600000}
+  );
+
+  function successCallback(position) {
+    $('#lat').value = position.coords.latitude;
+    $('#lon').value = position.coords.longitude;
+  }
+function errorCallback(error) {
+  var err_msg = "";
+  switch(error.code)
+  {
+    case 1:
+      err_msg = "位置情報の利用が許可されていません";
+      break;
+    case 2:
+      err_msg = "デバイスの位置が判定できません";
+      break;
+    case 3:
+      err_msg = "タイムアウトしました";
+      break;
+  }
+}
+
+} else {
+  //Geolocation APIを利用できない環境向けの処理
+  alert('位置情報を取得できませんでした');
+}
+});
+</script>
