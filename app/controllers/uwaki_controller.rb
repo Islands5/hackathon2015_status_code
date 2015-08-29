@@ -6,15 +6,16 @@ class UwakiController < ApplicationController
     lat = params[:geo][:lat]
     lon = params[:geo][:lon]
 
-    address = search_address(lat, lon)
+    @address = search_address(lat, lon)
+
 	end
 
   def search_address(lat, lon)
     url = 'http://usoinfo.if.land.to/osmtool/latlon2addr.php?ipt=csv&latcsv=' + lat + '&loncsv=' + lon
     charset = nil
     html = open(url) do |f|
-        charset = f.charset # 文字種別を取得
-          f.read # htmlを読み込んで変数htmlに渡す
+      charset = f.charset # 文字種別を取得
+      f.read # htmlを読み込んで変数htmlに渡す
     end
 
     # htmlをパース(解析)してオブジェクトを生成
